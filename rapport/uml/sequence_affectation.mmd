@@ -1,0 +1,24 @@
+sequenceDiagram
+  actor A as Administrateur
+  participant UI as React
+  participant C as AffectationController
+  participant S as AffectationService
+  participant DB as MySQL
+  A->>UI: Remplit le formulaire d'affectation
+  UI->>C: POST /api/affectations (JWT)
+  C->>S: create(request)
+  S->>DB: charge enseignant et matière
+  S->>S: RG4 heures > 0, RG7 pas de doublon
+  S->>DB: somme des heures de l'enseignant
+  S->>S: RG5 total <= charge max du grade
+  S->>DB: somme des heures de la matière
+  S->>S: RG6 total <= volume horaire
+  alt une règle est violée
+    S-->>C: BusinessException(RGx)
+    C-->>UI: 409 {rule, message}
+    UI-->>A: Affiche le message d'erreur
+  else tout est valide
+    S->>DB: INSERT affectation
+    C-->>UI: 201 Created
+    UI-->>A: Liste et charge mises à jour
+  end

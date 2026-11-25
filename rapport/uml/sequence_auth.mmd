@@ -1,0 +1,14 @@
+sequenceDiagram
+  actor U as Utilisateur
+  participant UI as React
+  participant AC as AuthController
+  participant J as JwtService
+  participant DB as MySQL
+  U->>UI: username + mot de passe
+  UI->>AC: POST /api/auth/login
+  AC->>DB: findByUsername
+  AC->>AC: BCrypt matches
+  AC->>J: generate(username, role)
+  AC-->>UI: 200 {token, role}
+  UI->>UI: stocke la session
+  UI->>AC: requêtes suivantes avec Authorization Bearer

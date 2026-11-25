@@ -1,0 +1,54 @@
+classDiagram
+  direction LR
+  class Utilisateur {
+    +Long id
+    +String username
+    +String password
+    +Role role
+  }
+  class Enseignant {
+    +Long id
+    +String nom
+    +String prenom
+    +String email
+    +Grade grade
+    +String departement
+    +getChargeMax() int
+  }
+  class Matiere {
+    +Long id
+    +String code
+    +String intitule
+    +int volumeHoraire
+    +int semestre
+  }
+  class Affectation {
+    +Long id
+    +TypeSeance typeSeance
+    +int heures
+    +String anneeUniversitaire
+  }
+  class Role {
+    <<enumeration>>
+    ADMIN
+    RESPONSABLE
+  }
+  class Grade {
+    <<enumeration>>
+    PROFESSEUR
+    MAITRE_CONFERENCES
+    MAITRE_ASSISTANT
+    ASSISTANT
+    VACATAIRE
+  }
+  class TypeSeance {
+    <<enumeration>>
+    CM
+    TD
+    TP
+  }
+  Utilisateur --> Role
+  Enseignant --> Grade
+  Affectation --> TypeSeance
+  Enseignant "1" -- "0..*" Affectation : est affecté
+  Matiere "1" -- "0..*" Affectation : est enseignée

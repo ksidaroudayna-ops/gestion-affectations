@@ -1,0 +1,14 @@
+flowchart LR
+  admin([Administrateur])
+  resp([Responsable])
+  subgraph Système de gestion des affectations
+    uc1(S'authentifier)
+    uc2(Gérer les enseignants)
+    uc3(Gérer les matières)
+    uc4(Affecter un enseignant à une matière)
+    uc5(Consulter les affectations)
+    uc6(Consulter la charge horaire)
+  end
+  admin --- uc1 & uc2 & uc3 & uc4 & uc5 & uc6
+  resp --- uc1 & uc5 & uc6
+  uc4 -. include .-> uc6

@@ -1,0 +1,28 @@
+:root { --bg:#f5f6fa; --fg:#1f2430; --card:#fff; --accent:#2f5bea; --border:#dfe3ec; --danger:#c62f3e; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#14161c; --fg:#e6e8ee; --card:#1d2029; --accent:#6c8cff; --border:#2d3240; --danger:#ff6b78; }
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+header { display:flex; gap:24px; align-items:center; padding:12px 24px; background:var(--card); border-bottom:1px solid var(--border); flex-wrap:wrap; }
+header nav { display:flex; gap:8px; flex:1; }
+header nav button.active { background:var(--accent); color:#fff; }
+main { max-width:1100px; margin:24px auto; padding:0 16px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:20px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; align-items:end; }
+label { display:flex; flex-direction:column; gap:4px; font-size:14px; }
+input, select { padding:8px; border:1px solid var(--border); border-radius:6px; background:var(--bg); color:var(--fg); font:inherit; }
+button { padding:8px 14px; border:0; border-radius:6px; background:var(--accent); color:#fff; cursor:pointer; font:inherit; }
+button.secondary { background:transparent; color:var(--fg); border:1px solid var(--border); }
+button.danger { background:var(--danger); }
+button.link { background:none; color:var(--accent); text-decoration:underline; }
+.actions { display:flex; gap:8px; }
+table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--border); font-size:14px; }
+.error { background:color-mix(in srgb, var(--danger) 15%, transparent); color:var(--danger); padding:10px 12px; border-radius:6px; }
+.login { max-width:360px; margin:80px auto; display:flex; flex-direction:column; gap:12px; }
+.charge { grid-column:1/-1; font-size:14px; }
+.bar { height:8px; background:var(--border); border-radius:4px; margin-top:6px; overflow:hidden; }
+.bar div { height:100%; background:var(--accent); }
+.bar div.full { background:var(--danger); }
+@media (max-width:600px) { table { display:block; overflow-x:auto; } }

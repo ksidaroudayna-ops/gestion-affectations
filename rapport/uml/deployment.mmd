@@ -1,0 +1,10 @@
+flowchart LR
+  subgraph Poste client
+    B[Navigateur<br/>React + Vite :5173]
+  end
+  subgraph Serveur
+    API[Spring Boot :8080<br/>Controllers, Services, JWT]
+    DB[(MySQL :3306<br/>affectations_db)]
+  end
+  B -- HTTP/JSON + JWT --> API
+  API -- JDBC / JPA --> DB
